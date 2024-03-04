@@ -10,5 +10,6 @@ router.post('/getUser',userController.getUserRegex);
 
 router.post('/addLead',leadController.addLead);
 router.get('/getLeads',leadController.getLeads);
+router.get('/getCategoryLeads',leadController.getCategoryLeads);
 
 module.exports = router;
