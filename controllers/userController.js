@@ -81,3 +81,20 @@ exports.getUser = async (req, res) => {
         res.status(500).json({ error: 'Error al obtener usuario' });
     }
 };
+
+exports.deleteUser = async(req,res) =>{
+    const userId = req.params.id;
+    try{
+        const deletedUser = await User.findByIdAndDelete(userId);
+        if (!deletedUser) {
+        return res.status(404).send("Usuario no encontrado");
+        }
+        res.status(200).send("Usuario eliminado correctamente");
+        }
+    catch(err){
+        console.error(err);
+        res.status(500).send("Error al eliminar el usuario");
+    }
+}
+
+
