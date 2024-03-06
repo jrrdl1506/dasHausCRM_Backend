@@ -12,3 +12,14 @@ exports.addInventario = async(req,res)=>{
         console.log("Hubo un problema");
     }
 }
+
+exports.getInventario = async(req,res) =>{
+    try{
+        const inventario = await inventario.find();
+        res.json(inventario);
+
+    }
+    catch(error){
+        console.log("Hubo un problema");
+    }
+}

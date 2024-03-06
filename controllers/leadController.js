@@ -101,3 +101,13 @@ exports.getApartadosConteo = async(req,res) =>{
         res.status(500).json({ error: "Hubo un problema al obtener el número de leads apartados" });
     }
 }
+
+exports.getGlobalConteo = async(req,res) =>{
+    try {
+        const numeroLeadsApartados = await Lead.countDocuments({ leadStatus: "APARTADO" });
+        res.json({ count: numeroLeadsApartados });
+    } catch (error) {
+        console.log("Hubo un problema", error);
+        res.status(500).json({ error: "Hubo un problema al obtener el número de leads apartados" });
+    }
+}
