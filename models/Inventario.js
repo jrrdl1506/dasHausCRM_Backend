@@ -21,6 +21,10 @@ const InventarioSchema = mongoose.Schema({
     colindancia:{
         type:String,
         requires:true
+    },
+    estado:{
+        type:String,
+        requires:true
     }
 
 });
