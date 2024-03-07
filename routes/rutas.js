@@ -15,8 +15,18 @@ router.get('/getLeads',leadController.getLeads);
 router.get('/getCategoryLeads',leadController.getCategoryLeads);
 
 
+
 router.get('/getLeadsApartados',leadController.getLeadsApartados);
 router.get('/getApartadosConteo',leadController.getApartadosConteo);
+
+router.get('/getLeadsGlobalConteo',leadController.getLeadsGlobalConteo);
+
+router.get('/getApartadoPorCanal',leadController.getApartadoPorCanal);
+router.get('/getApartadoPorprototipo',leadController.getApartadoPorprototipo);
+
+router.get('/getHitrateApartado',leadController.getHitrateApartado);
+//router.get('/',leadController.);
+
 
 router.post('/addInventario',inventarioController.addInventario);
 
