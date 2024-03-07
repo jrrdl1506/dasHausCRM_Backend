@@ -26,6 +26,14 @@ const LeadSchema = mongoose.Schema({
     leadStatus:{
         type:String,
         requires:true
+    },
+    leadDate:{
+        type:Date,
+        requires:true
+    },
+    leadVendor:{
+        type:String,
+        requires:true
     }
 
 
