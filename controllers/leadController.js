@@ -198,3 +198,36 @@ exports.getApartadoPorprototipo = async (req, res) => {
         console.log("Hubo un problema");
     }
 }
+
+
+/*Proceso de avanzar leads*/
+
+exports.anvanzarLead = async (req, res) => {
+    const leadId = req.params.id;
+  
+
+  try {
+    const lead = await Lead.findById(leadId);
+
+    if (!lead) {
+      return res.status(404).json({ error: 'Lead no encontrado' });
+    }
+
+    const estadosSecuenciales = ['EN PROCESO', 'APARTADO', 'CONTRATO GENERADO', 'FIRMADO', 'VIVIENDA ENTREGADA']; 
+
+    const indiceActual = estadosSecuenciales.indexOf(lead.leadStatus);
+
+    if (indiceActual !== -1 && indiceActual < estadosSecuenciales.length - 1) {
+      lead.leadStatus = estadosSecuenciales[indiceActual + 1];
+
+      await lead.save();
+
+      res.json(lead);
+    } else {
+      res.status(400).json({ error: 'No hay un próximo estado en la secuencia para este lead.' });
+    }
+  } catch (error) {
+    console.error("Hubo un problema", error);
+    res.status(500).json({ error: 'Hubo un problema al actualizar el lead por ID.' });
+  }
+  };
