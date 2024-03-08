@@ -34,6 +34,10 @@ const LeadSchema = mongoose.Schema({
     leadVendor:{
         type:String,
         requires:true
+    },
+    currentDate:{
+        type:Date,
+        requires:true
     }
 
 

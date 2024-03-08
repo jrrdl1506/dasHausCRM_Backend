@@ -15,7 +15,9 @@ exports.addInventario = async(req,res)=>{
 
 exports.getInventario = async(req,res) =>{
     try{
-        const inventario = await inventario.find();
+      
+    
+        const inventario = await Inventario.find();
         res.json(inventario);
 
     }

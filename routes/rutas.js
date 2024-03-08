@@ -29,6 +29,7 @@ router.get('/getHitrateApartado',leadController.getHitrateApartado);
 
 
 router.post('/addInventario',inventarioController.addInventario);
+router.get('/getInventario',inventarioController.getInventario);
 
 
 module.exports = router;
