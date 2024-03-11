@@ -86,6 +86,18 @@ exports.getLeadsApartados = async (req, res) => {
     }
 }
 
+exports.getLeadsByVendor = async (req, res) => {
+    try {
+        const leads = await Lead.find({ leadVendor: req.body.id });
+
+        res.send(leads);
+
+    }
+    catch (error) {
+        console.log("Hubo un problema");
+    }
+}
+
 
 exports.getApartadosConteo = async (req, res) => {
     try {
@@ -203,7 +215,7 @@ exports.getApartadoPorprototipo = async (req, res) => {
 /*Proceso de avanzar leads*/
 
 exports.anvanzarLead = async (req, res) => {
-    const leadId = req.params.id;
+    const leadId = req.body.id;
   
 
   try {
@@ -231,3 +243,27 @@ exports.anvanzarLead = async (req, res) => {
     res.status(500).json({ error: 'Hubo un problema al actualizar el lead por ID.' });
   }
   };
+
+  exports.getLeadsMes = async (req, res) => {
+    try {
+        const leads = await Lead.find();
+
+        const conteoPorLeadOrigin = leads.reduce((conteo, lead) => {
+            const leadOrigin = lead.currentDate;
+
+            conteo[leadOrigin] = (conteo[leadOrigin] || 0) + 1;
+
+            return conteo;
+        }, {});
+
+        const resultadoFinal = Object.entries(conteoPorLeadOrigin).map(([name, value]) => ({ name, value }));
+
+
+        res.json(resultadoFinal);
+
+
+    } catch (error) {
+        console.log("Hubo un problema", error);
+        res.status(500).json({ error: "Hubo un problema al obtener los leads" });
+    }
+}

@@ -36,7 +36,7 @@ const LeadSchema = mongoose.Schema({
         requires:true
     },
     currentDate:{
-        type:Date,
+        type:String,
         requires:true
     }
 

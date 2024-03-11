@@ -25,11 +25,19 @@ router.get('/getApartadoPorCanal',leadController.getApartadoPorCanal);
 router.get('/getApartadoPorprototipo',leadController.getApartadoPorprototipo);
 
 router.get('/getHitrateApartado',leadController.getHitrateApartado);
+router.get('/getLeadsMes',leadController.getLeadsMes);
+
+router.post('/getLeadsByVendor',leadController.getLeadsByVendor);
+
+
 //router.get('/',leadController.);
 
 
 router.post('/addInventario',inventarioController.addInventario);
 router.get('/getInventario',inventarioController.getInventario);
+
+
+
 
 
 module.exports = router;
