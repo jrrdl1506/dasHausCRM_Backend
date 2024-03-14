@@ -75,6 +75,16 @@ exports.getCategoryLeads = async (req, res) => {
     }
 }
 
+exports.getLeadsProspectos = async (req, res) => {
+    try {
+        const leads = await Lead.find({ leadStatus: "EN PROCESO" });
+        res.json(leads);
+    } catch (error) {
+        console.log("Hubo un problema", error);
+        res.status(500).json({ error: "Hubo un problema al obtener los leads" });
+    }
+}
+
 
 exports.getLeadsApartados = async (req, res) => {
     try {
@@ -216,11 +226,10 @@ exports.getApartadoPorprototipo = async (req, res) => {
 
 exports.anvanzarLead = async (req, res) => {
     const leadId = req.body.id;
-  
+  console.log(req.body.id)
 
   try {
     const lead = await Lead.findById(leadId);
-
     if (!lead) {
       return res.status(404).json({ error: 'Lead no encontrado' });
     }

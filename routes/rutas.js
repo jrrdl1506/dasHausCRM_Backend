@@ -11,12 +11,15 @@ router.post('/getUser',userController.getUserRegex);
 router.delete('/deleteUser/:id',userController.deleteUser);
 
 router.post('/addLead',leadController.addLead);
+router.post('/anvanzarLead',leadController.anvanzarLead);
 router.get('/getLeads',leadController.getLeads);
 router.get('/getCategoryLeads',leadController.getCategoryLeads);
 
 
 
 router.get('/getLeadsApartados',leadController.getLeadsApartados);
+router.get('/getLeadsProspectos',leadController.getLeadsProspectos);
+
 router.get('/getApartadosConteo',leadController.getApartadosConteo);
 
 router.get('/getLeadsGlobalConteo',leadController.getLeadsGlobalConteo);
