@@ -15,7 +15,7 @@ const CotizacionSchema = mongoose.Schema({
         requires:true
     },
     tieneEnganche:{
-        type:Boolean,
+        type:String,
         requires:true
     },
     enganche:{

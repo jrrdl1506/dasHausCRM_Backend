@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const MensualidadSchema = mongoose.Schema({
     es_enganche_o_mensualidad:{
-        type:Boolean,
+        type:String,
         requires:true
     },
     periodo:{

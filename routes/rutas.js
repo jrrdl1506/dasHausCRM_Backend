@@ -48,3 +48,5 @@ router.get('/getInventario',inventarioController.getInventario);
 
 
 module.exports = router;
+
+

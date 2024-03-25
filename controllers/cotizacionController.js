@@ -9,6 +9,6 @@ exports.addCotizacion = async(req,res)=>{
 
     }
     catch(error){
-        console.log("Hubo un problema");
+        console.log("Hubo un problema",error);
     }
 }
