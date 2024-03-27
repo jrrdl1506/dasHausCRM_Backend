@@ -1,6 +1,5 @@
 const Lead = require('../models/Lead');
 
-
 // ALTA LEADS 
 
 exports.addLead = async (req, res) => {
@@ -132,11 +131,14 @@ exports.getLeadsGlobalConteo = async (req, res) => {
 exports.getHitrateApartado = async (req, res) => {
     try {
         const numeroLeads = await Lead.countDocuments();
-        const numeroLeadsApartados = await Lead.countDocuments({ leadStatus: "APARTADO" });
-
-        const porcentajeLeadsApartados = (numeroLeadsApartados / numeroLeads) * 100;
-
-        res.json({ porcentajeLeadsApartados });
+        const estadosLeads = ['APARTADO', 'CONTRATO', 'FIRMADO', 'VIVIENDA ENTREGADA'];
+        const numeroLeadsApartados = await Lead.countDocuments({ leadStatus: { $in: estadosLeads } });
+        const responseData = [
+            { "name": "Leads sin apartado", "value": numeroLeads-numeroLeadsApartados },
+            { "name": "Leads con apartado", "value": numeroLeadsApartados }
+          ];
+          
+          res.json(responseData);
 
     } catch (error) {
         console.log("Hubo un problema", error);
@@ -208,6 +210,36 @@ exports.getApartadoPorprototipo = async (req, res) => {
             conteo[leadOrigin] = (conteo[leadOrigin] || 0) + 1;
 
             return conteo;
+        }, {});
+
+        const resultadoFinal = Object.entries(conteoPorLeadOrigin).map(([name, value]) => ({ name, value }));
+
+
+        res.json(resultadoFinal);
+
+    }
+    catch (error) {
+        console.log("Hubo un problema");
+    }
+}
+
+
+//recuperar leads por vendedor
+
+
+exports.getVendorAcomulado = async (req, res) => {
+    try {
+        const leads = await Lead.find();
+
+        const conteoPorLeadOrigin = leads.reduce( (conteo, lead) => {
+            
+            
+            const leadOrigin = lead.leadVendor;
+
+            conteo[leadOrigin] = (conteo[leadOrigin] || 0) + 1;
+
+            return conteo;
+            
         }, {});
 
         const resultadoFinal = Object.entries(conteoPorLeadOrigin).map(([name, value]) => ({ name, value }));

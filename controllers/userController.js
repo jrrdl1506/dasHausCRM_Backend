@@ -26,6 +26,22 @@ exports.getUsers = async(req,res) => {
 }
 
 
+// OBTENER USUARIO POR ID
+exports.getUserById = async(req,res) => {
+    const userId = req.body.id;
+    try{
+        const usuarios = await User.findById(userId);
+        if (!usuarios) {
+        console.log("lead no encontrado")
+        res.json(null);
+        }
+        res.json(usuarios.username);
+    }
+    catch(error){
+        res.json(null);
+    }
+}
+
 // AUTENTICAR UN USUARIO
 exports.authUser = async(req,res)=> {
     const {username,password} = req.body;
@@ -38,7 +54,6 @@ exports.authUser = async(req,res)=> {
             res.json(user)
         }
         
-
     } 
     catch(error){
         console.log(error);
@@ -65,12 +80,9 @@ exports.getUserRegex = async (req, res) => {
 // OBTENER UN USUARIO
 exports.getUser = async (req, res) => {
     try {
-        // Palabra con la que quieres hacer la búsqueda
-        const palabra = req.query.palabra; // Suponiendo que la palabra viene en el querystring
+        const palabra = req.query.palabra; 
 
-        // Realizar la consulta para encontrar el usuario cuyo nombre sea idéntico a la palabra dada
         const user = await UserModel.findOne({ nombre: palabra });
-
         if (!user) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
         }

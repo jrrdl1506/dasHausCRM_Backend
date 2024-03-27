@@ -8,9 +8,11 @@ router.post('/addUser',userController.addUser);
 router.get('/getUsers',userController.getUsers);
 router.post('/authUser',userController.authUser);
 router.post('/getUser',userController.getUserRegex);
+router.post('/getUserById',userController.getUserById);
 router.delete('/deleteUser/:id',userController.deleteUser);
 
 router.post('/addLead',leadController.addLead);
+router.get('/getVendorAcomulado',leadController.getVendorAcomulado);
 router.post('/anvanzarLead',leadController.anvanzarLead);
 router.get('/getLeads',leadController.getLeads);
 router.get('/getCategoryLeads',leadController.getCategoryLeads);
