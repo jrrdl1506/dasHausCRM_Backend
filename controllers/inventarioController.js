@@ -25,3 +25,7 @@ exports.getInventario = async(req,res) =>{
         console.log("Hubo un problema");
     }
 }
+
+
+
+

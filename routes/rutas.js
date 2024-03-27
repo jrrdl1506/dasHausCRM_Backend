@@ -3,6 +3,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const leadController = require('../controllers/leadController');
 const inventarioController = require('../controllers/inventarioController');
+const cotizacionController = require('../controllers/cotizacionController');
 
 router.post('/addUser',userController.addUser);
 router.get('/getUsers',userController.getUsers);
@@ -34,6 +35,9 @@ router.get('/getLeadsMes',leadController.getLeadsMes);
 
 router.post('/getLeadsByVendor',leadController.getLeadsByVendor);
 
+router.post('/addCotizacion',cotizacionController.addCotizacion);
+
+
 
 //router.get('/',leadController.);
 
@@ -46,3 +50,5 @@ router.get('/getInventario',inventarioController.getInventario);
 
 
 module.exports = router;
+
+
